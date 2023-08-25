@@ -3,7 +3,7 @@ import json
 from scrapy import Request
 from house_pricing.curl import home_curl, level1, level2, level3
 
-class RetailSpider(scrapy.Spider):
+class MitulaSpider(scrapy.Spider):
     name = "mitula_links"
 
     custom_settings = {
