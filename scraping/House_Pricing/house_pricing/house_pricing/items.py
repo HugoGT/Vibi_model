@@ -18,3 +18,7 @@ class MitulaAdformItem(scrapy.Item):
     location_address = scrapy.Field()
     nearby_locations = scrapy.Field()
     property_url = scrapy.Field()
+
+class MitulaDetalleItem(scrapy.Item):
+    mitula_url = scrapy.Field()
+    doomos_url = scrapy.Field()

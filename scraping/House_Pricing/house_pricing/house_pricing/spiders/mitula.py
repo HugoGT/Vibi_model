@@ -1,6 +1,6 @@
 import scrapy
 import json
-from house_pricing.items import MitulaAdformItem
+from house_pricing.items import MitulaAdformItem, MitulaDetalleItem
 
 class MitulaSpider(scrapy.Spider):
     name = "mitula"
@@ -30,7 +30,13 @@ class MitulaSpider(scrapy.Spider):
         self.start_urls.append('https://casas.mitula.pe/searchRE/nivel2-Lima/nivel1-Lima+Metropolitana/op-1/q-Lima')
 
     def get_estate_detalle(self, response):
-        pass
+        Items = MitulaDetalleItem()
+        
+        Items['doomos_url'] = response.xpath('//a[@class="redirection"]/@data-href').get()
+        Items['mitula_url'] = response.url
+
+        yield Items
+
 
     def get_estate_adform(self, response):
         Items = MitulaAdformItem()
