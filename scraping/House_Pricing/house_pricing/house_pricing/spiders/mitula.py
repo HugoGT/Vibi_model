@@ -1,5 +1,6 @@
 import scrapy
 import json
+from house_pricing.items import MitulaAdformItem
 
 class MitulaSpider(scrapy.Spider):
     name = "mitula"
@@ -32,25 +33,32 @@ class MitulaSpider(scrapy.Spider):
         pass
 
     def get_estate_adform(self, response):
-        title = response.xpath('//div[@class="main-title"]/text()').get()
-        price = response.xpath('//div[@class="prices-and-fees__price"]/text()').get().strip()
-        location = response.xpath('//div[@class="location"]/text()').get()
+        Items = MitulaAdformItem()
 
-        property_type = response.xpath('//div[@class="property-type"]/span[@class]/text()').get()
-        operation_type = response.xpath('//div[@class="operation-type"]/span[@class]/text()').get()
-        plot_area = response.xpath('//div[@class="plot-area"]/span[@class]/text()').get()
-        year = response.xpath('//div[@class="year"]/span[@class]/text()').get()
+        Items['title'] = response.xpath('//div[@class="main-title"]/text()').get()
+        Items['price'] = response.xpath('//div[@class="prices-and-fees__price"]/text()').get().strip()
+        Items['location'] = response.xpath('//div[@class="location"]/text()').get()
 
-        description = response.xpath('//div[@id="description-text"]/text()').get()
-        image_urls = response.xpath('//img[@alt="place photo 1"]/@src').get()
+        Items['property_type'] = response.xpath('//div[@class="property-type"]/span[@class]/text()').get()
+        Items['operation_type'] = response.xpath('//div[@class="operation-type"]/span[@class]/text()').get()
+        Items['plot_area'] = response.xpath('//div[@class="plot-area"]/span[@class]/text()').get()
+        Items['year'] = response.xpath('//div[@class="year"]/span[@class]/text()').get()
+
+        Items['description'] = response.xpath('//div[@id="description-text"]/text()').get()
+        Items['image_urls'] = response.xpath('//img[@alt="place photo 1"]/@src').get()
 
         inner = response.xpath('//div[@class="details-item"]/div[@class="details-item-value"]/text()').getall()
         if len(inner) == 3:
-            bed, bath, area = inner
+            Items['bed'], Items['bath'], Items['area'] = inner
+        else:
+            Items['bed'], Items['bath'], Items['area'] = '', '', ''
 
-        facilities = response.xpath('//div[@class="facilities"]//span/text()').getall()
-        location_address = response.xpath('//div[@class="location-map__location-address-map"]/text()').get()
-        nearby_locations = response.xpath('//div[@class="nearby-locations"]/ul//span/text()').getall()
+        Items['facilities'] = response.xpath('//div[@class="facilities"]//span/text()').getall()
+        Items['location_address'] = response.xpath('//div[@class="location-map__location-address-map"]/text()').get()
+        Items['nearby_locations'] = response.xpath('//div[@class="nearby-locations"]/ul//span/text()').getall()
+        Items['property_url'] = response.url
+
+        yield Items
         
     def parse(self, response, **kwargs):
         if kwargs:
