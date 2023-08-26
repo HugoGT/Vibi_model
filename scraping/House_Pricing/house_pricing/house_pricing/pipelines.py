@@ -1,4 +1,3 @@
-# from itemadapter import ItemAdapter
 import sys
 import psycopg2
 from .items import MitulaAdformItem, MitulaDetalleItem

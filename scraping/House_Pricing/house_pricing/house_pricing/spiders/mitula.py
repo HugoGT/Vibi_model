@@ -26,8 +26,7 @@ class MitulaSpider(scrapy.Spider):
         for item in data:
             self.start_urls += list(item.values())[0]
 
-        self.start_urls = list(set(self.start_urls))[1:3]
-        self.start_urls.append('https://casas.mitula.pe/searchRE/nivel2-Lima/nivel1-Lima+Metropolitana/op-1/q-Lima')
+        self.start_urls = list(set(self.start_urls))
 
     def get_estate_detalle(self, response):
         Items = MitulaDetalleItem()
@@ -36,7 +35,6 @@ class MitulaSpider(scrapy.Spider):
         Items['mitula_url'] = response.url
 
         yield Items
-
 
     def get_estate_adform(self, response):
         Items = MitulaAdformItem()
@@ -53,11 +51,15 @@ class MitulaSpider(scrapy.Spider):
         Items['description'] = response.xpath('//div[@id="description-text"]/text()').get()
         Items['image_urls'] = response.xpath('//img[@alt="place photo 1"]/@src').get()
 
-        inner = response.xpath('//div[@class="details-item"]/div[@class="details-item-value"]/text()').getall()
-        if len(inner) == 3:
-            Items['bed'], Items['bath'], Items['area'] = inner
-        else:
-            Items['bed'], Items['bath'], Items['area'] = '', '', ''
+        inner = response.xpath('//div[@class="details-item-value"]/text()').getall()
+        Items['bed'], Items['bath'], Items['area'] = '', '', ''
+        for room in inner:
+            if 'dormitorio' in room:
+                Items['bed'] = room
+            elif 'baño' in room:
+                Items['bath'] = room
+            elif 'm²' in room:
+                Items['area'] = room
 
         Items['facilities'] = response.xpath('//div[@class="facilities"]//span/text()').getall()
         Items['location_address'] = response.xpath('//div[@class="location-map__location-address-map"]/text()').get()
@@ -78,7 +80,7 @@ class MitulaSpider(scrapy.Spider):
             if 'adform' in url.split('/'):
                 yield response.follow(follow_url, callback=self.get_estate_adform)
             elif 'detalle' in url.split('/'):
-                yield response.follow(follow_url, callbaack=self.get_estate_detalle)
+                yield response.follow(follow_url, callback=self.get_estate_detalle)
 
         next_page = response.xpath('//li[@value="{}"]/a/@href'.format(num_page)).get()
         if next_page:
