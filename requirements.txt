@@ -1,1 +1,4 @@
-selenium==4.11.2
+Scrapy
+psycopg2-binary
+Twisted==22.10.0
+pandas
