@@ -17,6 +17,7 @@ NEWSPIDER_MODULE = "house_pricing.spiders"
 #USER_AGENT = "house_pricing (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
+
 # ROBOTSTXT_OBEY = True
 ROBOTSTXT_OBEY = False
 
