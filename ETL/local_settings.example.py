@@ -1,0 +1,5 @@
+hostname = '-h'
+username = '-U'
+password = 'PGPASSWORD'
+port = '-p'
+database = '-d'
