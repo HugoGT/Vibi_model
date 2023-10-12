@@ -5,7 +5,14 @@ module.exports = {
     `./src/components/**/*.{js,jsx,ts,tsx}`,
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        custom: ["Archivo", "sans"],
+      },
+      colors: {
+        vibi: "#ec245a",
+      },
+    },
   },
   plugins: [],
-}
+};
