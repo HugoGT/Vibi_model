@@ -9,12 +9,12 @@ export function Header({ main, links }) {
         <a href={main} className="h-6 px-4">
           <img src="/svg/vibi.svg" alt="logo vibi" className="h-full" />
         </a>
-        <ul className="hidden md:flex gap-6 mr-4">
+        <ul className="hidden lg:flex gap-6 mr-4">
           {links.map((link) => (
             <NavLink key={link.url} {...link} />
           ))}
         </ul>
-        <details className="group md:hidden">
+        <details className="group lg:hidden">
           <summary className="list-none p-2 group-open:before:fixed group-open:before:inset-0">
             <RxHamburgerMenu className="text-2xl" />
           </summary>
