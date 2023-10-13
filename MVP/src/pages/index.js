@@ -1,20 +1,21 @@
 import * as React from "react";
-import { Layout } from "../components/layout";
+import { Hero } from "../components/hero";
 import { Header } from "../components/header";
+import { Layout } from "../components/layout";
 
 const links = [
-  { url: "#", name: "Simula tu crédito" },
-  { url: "#", name: "Busca tu vivienda" },
+  { url: "#", name: "Inicio" },
+  { url: "#", name: "Beneficios" },
   { url: "#", name: "Preguntas frecuentes" },
-  { url: "#", name: "Hablemos ahora", isLast: true },
+  { url: "#", name: "¿Dudas?, Hablemos", isLast: true },
 ];
 
 export default function index() {
   return (
     <Layout title="Vibi">
       <Header main={"#"} links={links} />
-      {/* <Hero />
-      <Services />
+      <Hero />
+      {/* <Services />
       <About />
       <Clients /> */}
     </Layout>

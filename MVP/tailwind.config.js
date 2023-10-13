@@ -11,6 +11,9 @@ module.exports = {
       },
       colors: {
         vibi: "#ec245a",
+        blue_vibi: "#102c57",
+        orange_vibi: "#ff3d00",
+        green_wpp: "#40c351",
       },
     },
   },
