@@ -10,7 +10,7 @@ export function SEO({ title }) {
         href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;400;500;700;900&display=swap"
         rel="stylesheet"
       ></link>
-      <link rel="shortcut icon" href="/images/icon.png" />
+      <link rel="shortcut icon" href="/svg/logo.svg" />
       <title>{title}</title>
     </Helmet>
   );

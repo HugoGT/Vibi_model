@@ -4,7 +4,7 @@ import { Header } from "../components/header";
 import { Layout } from "../components/layout";
 
 const links = [
-  { url: "#", name: "Inicio" },
+  { url: "#inicio", name: "Inicio" },
   { url: "#", name: "Beneficios" },
   { url: "#", name: "Preguntas frecuentes" },
   { url: "#", name: "¿Dudas?, Hablemos", isLast: true },
@@ -13,7 +13,7 @@ const links = [
 export default function index() {
   return (
     <Layout title="Vibi">
-      <Header main={"#"} links={links} />
+      <Header main={"#inicio"} links={links} />
       <Hero />
       {/* <Services />
       <About />
