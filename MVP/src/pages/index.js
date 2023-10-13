@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Comparison } from "../components/comparison";
+import { Cta } from "../components/cta";
 import { Header } from "../components/header";
 import { Hero } from "../components/hero";
 import { Layout } from "../components/layout";
@@ -17,7 +18,10 @@ export default function index() {
     <Layout title="Vibi">
       <Header main={"#inicio"} links={links} />
       <Hero />
-      <Comparison />
+      <div className="bg-gray-100">
+        <Comparison />
+        <Cta />
+      </div>
       {/* <About /> */}
     </Layout>
   );

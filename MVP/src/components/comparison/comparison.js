@@ -4,10 +4,10 @@ export function Comparison() {
   return (
     <section
       id="creditos"
-      className="flex flex-col items-center px-8 max-w-screen-2xl m-auto sm:mt-8"
+      className="flex flex-col items-center pt-8 px-8 max-w-screen-2xl m-auto md:pt-12"
     >
       <div className="pb-8 text-center">
-        <h2 className="text-xl font-bold mb-2 sm:text-3xl lg:text-4xl">
+        <h2 className="text-2xl font-bold mb-2 sm:text-3xl lg:text-4xl">
           Conoce las modalidades de financiamiento
         </h2>
         <p className="text-sm text-secondary_vibi sm:text-base">
