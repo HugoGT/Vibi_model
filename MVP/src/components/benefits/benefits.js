@@ -24,7 +24,7 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section id="beneficios" className="p-8 max-w-screen-2xl m-auto md:p-12">
+    <section className="p-8 max-w-screen-2xl m-auto md:p-12">
       <div className="text-center">
         <h2 className="text-2xl font-bold mb-2 sm:text-3xl lg:text-4xl">
           Descubre los beneficios de nuestro crédito

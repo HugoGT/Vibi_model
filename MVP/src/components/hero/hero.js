@@ -2,8 +2,8 @@ import React from "react";
 
 export function Hero() {
   return (
-    <section id="inicio" className="pt-20 sm:mb-4">
-      <div className="p-8 m-auto max-w-screen-xl flex flex-col items-center md:flex-row md:justify-evenly lg:px-16">
+    <section className="sm:mb-4">
+      <div className="p-8 pb-0 m-auto max-w-screen-xl flex flex-col items-center md:flex-row md:justify-evenly lg:px-16">
         <div className="text-center md:px-8 md:text-left md:w-1/2 lg:p-0">
           <h1 className="text-2xl font-bold sm:text-4xl lg:text-5xl xl:text-6xl">
             Financiamos el sueño de tu casa propia

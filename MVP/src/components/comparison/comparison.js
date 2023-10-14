@@ -2,10 +2,7 @@ import React from "react";
 
 export function Comparison() {
   return (
-    <section
-      id="creditos"
-      className="flex flex-col items-center pt-8 px-8 max-w-screen-2xl m-auto md:pt-12"
-    >
+    <section className="flex flex-col items-center pt-8 px-8 max-w-screen-2xl m-auto md:pt-12">
       <div className="pb-8 text-center">
         <h2 className="text-2xl font-bold mb-2 sm:text-3xl lg:text-4xl">
           Conoce las modalidades de financiamiento
@@ -46,7 +43,7 @@ export function Comparison() {
           </ul>
           <a
             className="text-sm text-green_vibi-900 underline hover:text-green_vibi-700"
-            href=""
+            href="#"
           >
             Conoce los subsidios del estado
           </a>
