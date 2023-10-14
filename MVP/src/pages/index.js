@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Benefits } from "../components/benefits";
 import { Comparison } from "../components/comparison";
 import { Cta } from "../components/cta";
 import { Header } from "../components/header";
@@ -8,7 +9,7 @@ import { Layout } from "../components/layout";
 const links = [
   { url: "#inicio", name: "Inicio" },
   { url: "#creditos", name: "Modalidades de crédito" },
-  { url: "#", name: "Beneficios" },
+  { url: "#beneficios", name: "Beneficios" },
   { url: "#", name: "Preguntas frecuentes" },
   { url: "#", name: "¿Dudas?, Hablemos", isLast: true },
 ];
@@ -22,6 +23,7 @@ export default function index() {
         <Comparison />
         <Cta />
       </div>
+      <Benefits />
       {/* <About /> */}
     </Layout>
   );
