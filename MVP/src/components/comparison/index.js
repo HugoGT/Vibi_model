@@ -1,2 +1,2 @@
 export * from "./comparison";
-export { Hero as default } from "./comparison";
+export { Comparison as default } from "./comparison";
