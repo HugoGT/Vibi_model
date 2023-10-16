@@ -11,7 +11,7 @@ const links = [
   { url: "#inicio", name: "Inicio" },
   { url: "#creditos", name: "Modalidades de crédito" },
   { url: "#beneficios", name: "Beneficios" },
-  { url: "#", name: "Simular Crédito" },
+  { url: "/simulacion", name: "Simular Crédito" },
   { url: "#", name: "¿Dudas?, Hablemos", isLast: true },
 ];
 

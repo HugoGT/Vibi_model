@@ -18,7 +18,7 @@ export function Footer() {
           <Sm key={sm.alt} {...sm} />
         ))}
       </ul>
-      <img className="h-8" src="svg/logo-gray.svg" alt="logo vibi" />
+      <img className="h-8" src="/svg/logo-gray.svg" alt="logo vibi" />
       <p className="pt-2 text-sm text-secondary_vibi sm:text-base">
         &#169; 2023 Vibiperu. Derechos reservados.
       </p>

@@ -41,7 +41,7 @@ export function Hero() {
         </div>
         <img
           className="rounded mt-8 md:mt-0 md:max-w-sm lg:ml-8 lg:max-w-lg xl:ml-0"
-          src="images/hero.jpg"
+          src="/images/hero.jpg"
           alt="vendedor"
         />
       </div>
