@@ -34,7 +34,7 @@ export function Hero() {
 
           <a
             className="inline-block mt-4 px-6 py-4 bg-vibi rounded text-sm text-white lg:text-base"
-            href="#"
+            href="/simulacion"
           >
             Pre-califica a tu crédito
           </a>

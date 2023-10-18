@@ -1,2 +1,2 @@
 export * from "./form";
-export { Form as default } from "./form";
+export { VibiForm as default } from "./form";
