@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <footer
       id="footer"
-      className="p-8 flex flex-col items-center bg-gray-100 md:py-12"
+      className="p-8 flex flex-col items-center bg-gray-200 md:py-12"
     >
       <ul className="mb-8 flex gap-8 sm:mb-12">
         {socialMedia.map((sm) => (

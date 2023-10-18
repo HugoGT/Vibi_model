@@ -425,16 +425,13 @@ export function VibiForm() {
         </div>
 
         <a
-          href="../enviado"
+          href="../exito"
           className="inline-block mb-8 mt-4 px-6 py-3 bg-vibi rounded text-sm text-white sm:mb-12 lg:text-base"
           type="submit"
         >
           Enviar
         </a>
-        <a
-          href="../"
-          className="ml-6 underline text-blue-600 hover:text-blue-700"
-        >
+        <a href="../" className="ml-6 underline hover:text-blue-700">
           Volver
         </a>
       </form>
