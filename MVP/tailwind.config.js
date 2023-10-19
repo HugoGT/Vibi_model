@@ -12,6 +12,7 @@ module.exports = {
       colors: {
         vibi: "#ec245a",
         blue_vibi: "#102c57",
+        gray_vibi: "#5c6f94",
         secondary_vibi: "#384961",
         orange_vibi: {
           100: "#fff5ec",

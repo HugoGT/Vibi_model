@@ -14,19 +14,19 @@ export function Hero() {
           </p>
 
           <div className="flex items-start gap-2 mb-3">
-            <img className="mr-1 w-5" src="/svg/check.svg" alt="" />
+            <img className="w-5" src="/svg/check.svg" alt="" />
             <p className="text-sm lg:text-base">
               Hasta 20 años para pagar tu crédito con el subsidio del estado.
             </p>
           </div>
           <div className="flex items-start gap-2 mb-3">
-            <img className="mr-1 w-5" src="/svg/check.svg" alt="" />
+            <img className="w-5" src="/svg/check.svg" alt="" />
             <p className="text-sm lg:text-base">
               Fácil acceso para aplicar a los bonos del estado.
             </p>
           </div>
           <div className="flex items-start gap-2 mb-3">
-            <img className="mr-1 w-5" src="/svg/check.svg" alt="" />
+            <img className="w-5" src="/svg/check.svg" alt="" />
             <p className="text-sm lg:text-base">
               Aseoría gratuita y sin compromiso.
             </p>

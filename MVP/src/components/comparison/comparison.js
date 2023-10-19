@@ -2,7 +2,7 @@ import React from "react";
 
 export function Comparison() {
   return (
-    <section className="flex flex-col items-center pt-8 px-8 max-w-screen-2xl m-auto md:pt-12">
+    <section className="flex flex-col items-center pt-16 px-8 max-w-screen-2xl m-auto md:pt-20">
       <div className="pb-8 text-center">
         <h2 className="text-2xl font-bold mb-2 sm:text-3xl lg:text-4xl">
           Conoce las modalidades de financiamiento

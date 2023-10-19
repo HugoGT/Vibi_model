@@ -11,7 +11,7 @@ export function NavLink({ url = "#", name = "No name", isLast = false }) {
           </button>
         </a>
       ) : (
-        <a className="pt-3 block" href={url}>
+        <a className="pt-3 block hover:text-vibi hover:opacity-90" href={url}>
           {name}
         </a>
       )}

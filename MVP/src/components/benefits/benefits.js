@@ -24,7 +24,7 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="p-8 max-w-screen-2xl m-auto md:p-12">
+    <section className="flex flex-col items-center px-8 py-16 max-w-screen-2xl m-auto sm:py-20 md:px-12">
       <div className="text-center">
         <h2 className="text-2xl font-bold mb-2 sm:text-3xl lg:text-4xl">
           Descubre los beneficios de nuestro crédito
@@ -38,6 +38,12 @@ export function Benefits() {
           <Benefit key={ben.alt} {...ben} />
         ))}
       </ul>
+      <a
+        className="inline-block px-6 py-4 bg-vibi rounded text-sm text-white lg:text-base"
+        href="/simulacion"
+      >
+        Pre-califica a tu crédito
+      </a>
     </section>
   );
 }
