@@ -39,7 +39,7 @@ export function Benefits() {
         ))}
       </ul>
       <a
-        className="inline-block px-6 py-4 bg-vibi rounded text-sm text-white lg:text-base"
+        className="inline-block px-6 py-4 bg-vibi rounded text-sm text-white lg:text-base hover:bg-vibi_hover"
         href="/simulacion"
       >
         Pre-califica a tu crédito

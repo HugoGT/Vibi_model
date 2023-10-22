@@ -11,8 +11,10 @@ module.exports = {
       },
       colors: {
         vibi: "#ec245a",
+        vibi_hover: "#d42151",
         blue_vibi: "#102c57",
         gray_vibi: "#5c6f94",
+        info_vibi: "#eff7ff",
         secondary_vibi: "#384961",
         orange_vibi: {
           100: "#fff5ec",
@@ -25,6 +27,7 @@ module.exports = {
           900: "#004540",
         },
         green_wpp: "#40c351",
+        wpp_hover: "#21a132",
         custom_red: "#ff7598",
       },
     },

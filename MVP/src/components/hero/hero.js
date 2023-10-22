@@ -33,7 +33,7 @@ export function Hero() {
           </div>
 
           <a
-            className="inline-block mt-4 px-6 py-4 bg-vibi rounded text-sm text-white lg:text-base"
+            className="inline-block mt-4 px-6 py-4 bg-vibi rounded text-sm text-white lg:text-base hover:bg-vibi_hover"
             href="/simulacion"
           >
             Pre-califica a tu crédito

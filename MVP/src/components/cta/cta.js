@@ -8,7 +8,7 @@ export function Cta() {
         ¿Dudas? Comunícate con un asesor especializado
       </p>
       <a id="beneficios" href="#">
-        <button className="flex gap-2 px-6 py-3 items-center mx-auto lg:mx-0 lg:mt-0 lg:ml-4 bg-green_wpp rounded text-white">
+        <button className="flex gap-2 px-6 py-3 items-center mx-auto lg:mx-0 lg:mt-0 lg:ml-4 bg-green_wpp rounded text-white hover:bg-wpp_hover">
           <img src="/svg/wpp.svg" alt="wpp logo" />
           Hablemos
         </button>
