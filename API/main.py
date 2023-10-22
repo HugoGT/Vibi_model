@@ -1,34 +1,33 @@
-
+# Vibi API
 
 import pickle
 
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
+from data import InputData, FormData
+from validate_data import validate_data
 
 
 with open('xgb_model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 
-app = FastAPI()
+app = FastAPI(title="Vibi API")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["Authorization", "Content-Type"],
+)
 
 
-class InputData(BaseModel):
-    area: int
-    bath: int
-    room: int
-    parking: int
-    year: int
-    property_type: int
-    near_cc: int
-    near_school: int
-    near_parks: int
-    near_avenue: int
-    security: int
-    elevator: int
-    rest_area: int
-    pool: int
-    ranking: float
+@app.post("/register/")
+async def predict(data: FormData):
+    data = validate_data(data)
+
+    return data
 
 
 @app.post("/predict/")
@@ -40,6 +39,6 @@ async def predict(data: InputData):
             data.rest_area, data.pool, data.ranking
         ]])
 
-        return {"resultado": str(result[0])}
+        return {"result": str(result[0])}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

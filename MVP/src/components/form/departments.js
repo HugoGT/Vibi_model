@@ -1,4 +1,5 @@
 export const PERU_DEPARTMENTS = {
+  SELECCIONAR: ["SELECCIONAR"],
   ANCASH: [
     "LLAMELLIN",
     "PAMPAROMAS",

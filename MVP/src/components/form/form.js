@@ -6,16 +6,19 @@ import { CbSelect } from "./combobox";
 const DEPARTMENTS = Object.keys(PERU_DEPARTMENTS);
 
 export function VibiForm() {
+  const [selectedTab, setSelectedTab] = useState("CM");
   const [department, setDepartment] = useState(DEPARTMENTS[0]);
   const DISTRICTS = PERU_DEPARTMENTS[department];
   const [district, setDistrict] = useState(DISTRICTS[0]);
+  let body = {};
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
+      credit: selectedTab,
       full_name: e.target.full_name.value,
       age: e.target.age.value,
-      phone: e.target.phone.value,
+      phone: "+51" + e.target.phone.value,
       email: e.target.email.value,
       dni: e.target.dni.value,
       dni_date: e.target.dni_date.value,
@@ -42,7 +45,21 @@ export function VibiForm() {
       formData.estimated_purchase = e.target.estimated_purchase.value;
     }
 
-    console.log(formData);
+    body = JSON.stringify(formData);
+
+    console.log(body);
+    // fetch("", {
+    //   body,
+    //   method: "post",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {})
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
   };
 
   return (
@@ -111,7 +128,7 @@ export function VibiForm() {
             </label>
             <input
               className="px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
-              type="number"
+              type="text"
               name="phone"
               id="phone"
               placeholder="959515627"
@@ -177,9 +194,11 @@ export function VibiForm() {
               htmlFor="home_price"
             >
               Valor de la vivienda:
-              <span className="ml-2 text-xs text-secondary_vibi sm:text-sm">
-                (Opcional)
-              </span>
+              {selectedTab !== "CH" && (
+                <span className="ml-2 text-xs text-secondary_vibi sm:text-sm">
+                  (Opcional)
+                </span>
+              )}
             </label>
             <input
               className="px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
@@ -187,6 +206,7 @@ export function VibiForm() {
               name="home_price"
               id="home_price"
               placeholder="$23400 o S/. 65200"
+              required={selectedTab === "CH"}
             />
           </div>
           <div className="flex flex-col sm:w-1/2">
@@ -201,6 +221,7 @@ export function VibiForm() {
               list="currencies"
               name="currency"
               id="currency"
+              required={selectedTab === "CH"}
             />
             <datalist id="currencies">
               <option value="Dólares" />
@@ -213,137 +234,105 @@ export function VibiForm() {
           <p className="pb-2 font-medium text-sm sm:text-base">
             ¿Cómo deseas financiar tu vivienda?
           </p>
-          <Tabs.Root className="" defaultValue="tab3">
+          <Tabs.Root defaultValue={selectedTab}>
             <Tabs.List
               className="flex flex-col mb-8 gap-4 sm:gap-0 sm:flex-row sm:justify-between"
-              aria-label="Manage your account"
+              aria-label="Selecciona tu crédito"
             >
               <Tabs.Trigger
                 className="inline-flex items-center justify-center py-3 px-4 ring-2 ring-gray-400 text-gray-600 rounded font-medium bg-white hover:bg-gray-100 data-[state=active]:ring-blue-500 data-[state=active]:text-blue-500 focus:ring-blue-500 sm:px-6"
-                value="tab3"
+                value="CM"
+                onClick={() => setSelectedTab("CM")}
               >
                 Crédito Mivivienda
               </Tabs.Trigger>
               <Tabs.Trigger
                 className="inline-flex items-center justify-center py-3 px-4 ring-2 ring-gray-400 text-gray-600 rounded font-medium bg-white hover:bg-gray-100 data-[state=active]:ring-blue-500 data-[state=active]:text-blue-500 focus:ring-blue-500 sm:px-6"
-                value="tab2"
+                value="TP"
+                onClick={() => setSelectedTab("TP")}
               >
                 Techo Propio
               </Tabs.Trigger>
               <Tabs.Trigger
                 className="inline-flex items-center justify-center py-3 px-4 ring-2 ring-gray-400 text-gray-600 rounded font-medium bg-white hover:bg-gray-100 data-[state=active]:ring-blue-500 data-[state=active]:text-blue-500 focus:ring-blue-500 sm:px-6"
-                value="tab1"
+                value="CH"
+                onClick={() => setSelectedTab("CH")}
               >
                 Crédito Hipotecario
               </Tabs.Trigger>
             </Tabs.List>
-            <Tabs.Content className="mb-8" value="tab1">
-              <div className="flex flex-col sm:gap-4 sm:pb-4 sm:flex-row">
-                <div className="flex flex-col sm:w-1/2">
-                  <label
-                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
-                    htmlFor="initial_payment"
-                  >
-                    Cuota inicial:
-                  </label>
-                  <input
-                    className="px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
-                    type="number"
-                    name="initial_payment"
-                    id="initial_payment"
-                    placeholder="S/. 5000"
-                  />
-                </div>
-                <div className="flex flex-col sm:w-1/2">
-                  <label
-                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
-                    htmlFor="situation"
-                  >
-                    ¿Cuál es tu situación laboral?:
-                  </label>
-                  <input
-                    className="p-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
-                    list="situations"
-                    name="situation"
-                    id="situation"
-                    defaultValue="Dependiente"
-                  />
-                  <datalist id="situations">
-                    <option value="Dependiente" />
-                    <option value="Independiente" />
-                  </datalist>
+            <Tabs.Content className="mb-8" value="CM">
+              <div className="flex flex-col gap-4 px-8 py-4 bg-info_vibi rounded sm:flex-row">
+                <img
+                  className="w-8 self-start"
+                  src="/svg/info.svg"
+                  alt="information"
+                />
+                <div className="">
+                  <p className="text-sm text-justify sm:text-base">
+                    Es un crédito hipotecario subsidiado por el estado que te
+                    permite comprar una vivienda desde S/.65,200.00 hasta
+                    S/.343,900.00. Además accede a los bonos del Buen Pagador y
+                    Buen Pagador Sostenible.
+                  </p>
+                  <p className="pt-2 underline text-xs text-sky-500 hover:cursor-pointer hover:text-sky-400 sm:text-sm">
+                    Conoce todos los beneficios
+                  </p>
                 </div>
               </div>
-
-              <div className="flex flex-col sm:gap-4 sm:pb-4 sm:flex-row">
-                <div className="flex flex-col sm:w-1/2">
-                  <label
-                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
-                    htmlFor="department"
-                  >
-                    ¿En qué departamento vives?:
-                  </label>
-                  <CbSelect
-                    list={DEPARTMENTS}
-                    selected={department}
-                    setSelected={setDepartment}
+              <div className="mt-4 p-6 border border-gray-200 rounded text-sm sm:px-10 sm:text-base">
+                <p className="mb-2 font-medium text-base sm:text-lg">
+                  Para aplicar a Crédito Mivivenda tienes que cumplir con las
+                  siguientes condiciones.
+                </p>
+                <p className="mb-4 text-secondary_vibi">
+                  Lee con atención cada una de las condiciones, si tienes dudas
+                  contacta con nuestros asesores.
+                </p>
+                <div className="flex items-start gap-2 mb-3">
+                  <img
+                    className="mt-[2px] w-4 sm:w-5"
+                    src="/svg/check.svg"
+                    alt=""
                   />
+                  <p className="">Ser mayor de edad (+18).</p>
                 </div>
-                <div className="flex flex-col sm:w-1/2">
-                  <label
-                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
-                    htmlFor="district"
-                  >
-                    ¿En qué distrito?:
-                  </label>
-                  <CbSelect
-                    list={DISTRICTS}
-                    selected={district}
-                    setSelected={setDistrict}
+                <div className="flex items-start gap-2 mb-3">
+                  <img
+                    className="mt-[2px] w-4 sm:w-5"
+                    src="/svg/check.svg"
+                    alt=""
                   />
+                  <p className="">
+                    Contar con una cuota mínima desde el 7.5% del valor de la
+                    vivienda.
+                  </p>
                 </div>
-              </div>
-
-              <div className="flex flex-col sm:gap-4 sm:pb-4 sm:flex-row">
-                <div className="flex flex-col sm:w-1/2">
-                  <label
-                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
-                    htmlFor="income"
-                  >
-                    ¿Cuál es tu ingreso mensual neto?:
-                  </label>
-                  <input
-                    className="p-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
-                    type="number"
-                    name="income"
-                    id="income"
-                    placeholder="S/. 3000"
+                <div className="flex items-start gap-2 mb-3">
+                  <img
+                    className="mt-[2px] w-4 sm:w-5"
+                    src="/svg/check.svg"
+                    alt=""
                   />
+                  <p className="">
+                    No ser porpietario o copropietario de otras viviendas a
+                    nivel nacional. Aplicable al cónyuge, conviviente legalmente
+                    reconocido o hijos menores de edad.
+                  </p>
                 </div>
-                <div className="flex flex-col sm:w-1/2">
-                  <label
-                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
-                    htmlFor="estimated_purchase"
-                  >
-                    ¿Cuándo estimas comprar tu vivienda?:
-                  </label>
-                  <input
-                    className="p-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
-                    list="purchase_time"
-                    name="estimated_purchase"
-                    id="estimated_purchase"
-                    defaultValue="De"
+                <div className="flex items-start gap-2 mb-2">
+                  <img
+                    className="mt-[2px] w-4 sm:w-5"
+                    src="/svg/check.svg"
+                    alt=""
                   />
-                  <datalist id="purchase_time">
-                    <option value="Menos de 3 meses" />
-                    <option value="De 3 a 6 meses" />
-                    <option value="De 6 meses a 1 año" />
-                    <option value="Más de 1 año" />
-                  </datalist>
+                  <p className="">
+                    No haber recibido apoyo habitacional previo del estado.
+                  </p>
                 </div>
               </div>
             </Tabs.Content>
-            <Tabs.Content className="mb-8" value="tab2">
+            <Tabs.Content className="mb-8" value="TP">
               <div className="flex flex-col gap-4 px-8 py-4 bg-info_vibi rounded sm:flex-row">
                 <img
                   className="w-8 self-start"
@@ -421,74 +410,113 @@ export function VibiForm() {
                 </div>
               </div>
             </Tabs.Content>
-            <Tabs.Content className="mb-8" value="tab3">
-              <div className="flex flex-col gap-4 px-8 py-4 bg-info_vibi rounded sm:flex-row">
-                <img
-                  className="w-8 self-start"
-                  src="/svg/info.svg"
-                  alt="information"
-                />
-                <div className="">
-                  <p className="text-sm text-justify sm:text-base">
-                    Es un crédito hipotecario subsidiado por el estado que te
-                    permite comprar una vivienda desde S/.65,200.00 hasta
-                    S/.343,900.00. Además accede a los bonos del Buen Pagador y
-                    Buen Pagador Sostenible.
-                  </p>
-                  <p className="pt-2 underline text-xs text-sky-500 hover:cursor-pointer hover:text-sky-400 sm:text-sm">
-                    Conoce todos los beneficios
-                  </p>
+            <Tabs.Content className="mb-8" value="CH">
+              <div className="flex flex-col sm:gap-4 sm:pb-4 sm:flex-row">
+                <div className="flex flex-col sm:w-1/2">
+                  <label
+                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
+                    htmlFor="initial_payment"
+                  >
+                    Cuota inicial:
+                  </label>
+                  <input
+                    className="px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
+                    type="number"
+                    name="initial_payment"
+                    id="initial_payment"
+                    placeholder="S/. 5000"
+                    required={selectedTab === "CH"}
+                  />
+                </div>
+                <div className="flex flex-col sm:w-1/2">
+                  <label
+                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
+                    htmlFor="situation"
+                  >
+                    ¿Cuál es tu situación laboral?:
+                  </label>
+                  <input
+                    className="p-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
+                    list="situations"
+                    name="situation"
+                    id="situation"
+                    defaultValue="Dependiente"
+                    required={selectedTab === "CH"}
+                  />
+                  <datalist id="situations">
+                    <option value="Dependiente" />
+                    <option value="Independiente" />
+                  </datalist>
                 </div>
               </div>
-              <div className="mt-4 p-6 border border-gray-200 rounded text-sm sm:px-10 sm:text-base">
-                <p className="mb-2 font-medium text-base sm:text-lg">
-                  Para aplicar a Crédito Mivivenda tienes que cumplir con las
-                  siguientes condiciones.
-                </p>
-                <p className="mb-4 text-secondary_vibi">
-                  Lee con atención cada una de las condiciones, si tienes dudas
-                  contacta con nuestros asesores.
-                </p>
-                <div className="flex items-start gap-2 mb-3">
-                  <img
-                    className="mt-[2px] w-4 sm:w-5"
-                    src="/svg/check.svg"
-                    alt=""
+
+              <div className="flex flex-col sm:gap-4 sm:pb-4 sm:flex-row">
+                <div className="flex flex-col sm:w-1/2">
+                  <label
+                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
+                    htmlFor="department"
+                  >
+                    ¿En qué departamento vives?:
+                  </label>
+                  <CbSelect
+                    list={DEPARTMENTS}
+                    selected={department}
+                    setSelected={setDepartment}
                   />
-                  <p className="">Ser mayor de edad (+18).</p>
                 </div>
-                <div className="flex items-start gap-2 mb-3">
-                  <img
-                    className="mt-[2px] w-4 sm:w-5"
-                    src="/svg/check.svg"
-                    alt=""
+                <div className="flex flex-col sm:w-1/2">
+                  <label
+                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
+                    htmlFor="district"
+                  >
+                    ¿En qué distrito?:
+                  </label>
+                  <CbSelect
+                    list={DISTRICTS}
+                    selected={district}
+                    setSelected={setDistrict}
                   />
-                  <p className="">
-                    Contar con una cuota mínima desde el 7.5% del valor de la
-                    vivienda.
-                  </p>
                 </div>
-                <div className="flex items-start gap-2 mb-3">
-                  <img
-                    className="mt-[2px] w-4 sm:w-5"
-                    src="/svg/check.svg"
-                    alt=""
+              </div>
+
+              <div className="flex flex-col sm:gap-4 sm:pb-4 sm:flex-row">
+                <div className="flex flex-col sm:w-1/2">
+                  <label
+                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
+                    htmlFor="income"
+                  >
+                    ¿Cuál es tu ingreso mensual neto?:
+                  </label>
+                  <input
+                    className="p-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
+                    type="number"
+                    name="income"
+                    id="income"
+                    placeholder="S/. 3000"
+                    required={selectedTab === "CH"}
                   />
-                  <p className="">
-                    No ser porpietario o copropietario de otras viviendas a
-                    nivel nacional. Aplicable al cónyuge, conviviente legalmente
-                    reconocido o hijos menores de edad.
-                  </p>
                 </div>
-                <div className="flex items-start gap-2 mb-2">
-                  <img
-                    className="mt-[2px] w-4 sm:w-5"
-                    src="/svg/check.svg"
-                    alt=""
+                <div className="flex flex-col sm:w-1/2">
+                  <label
+                    className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
+                    htmlFor="estimated_purchase"
+                  >
+                    ¿Cuándo estimas comprar tu vivienda?:
+                  </label>
+                  <input
+                    className="p-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
+                    list="purchase_time"
+                    name="estimated_purchase"
+                    id="estimated_purchase"
+                    defaultValue="De"
+                    required={selectedTab === "CH"}
                   />
-                  <p className="">
-                    No haber recibido apoyo habitacional previo del estado.
-                  </p>
+                  <datalist id="purchase_time">
+                    <option value="Menos de 3 meses" />
+                    <option value="De 3 a 6 meses" />
+                    <option value="De 6 meses a 1 año" />
+                    <option value="Más de 1 año" />
+                  </datalist>
                 </div>
               </div>
             </Tabs.Content>
