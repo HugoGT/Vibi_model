@@ -257,7 +257,7 @@ export function VibiForm() {
                 <div className="flex flex-col sm:w-1/2">
                   <label
                     className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
-                    htmlFor="age"
+                    htmlFor="situation"
                   >
                     ¿Cuál es tu situación laboral?:
                   </label>

@@ -1,10 +1,10 @@
 import React from "react";
-import { SEO } from "./seo";
+import { Seo } from "./seo";
 
 export function Layout({ title, children }) {
   return (
     <>
-      <SEO title={title} />
+      <Seo title={title} />
       <main className="font-sans text-blue_vibi">{children}</main>
     </>
   );

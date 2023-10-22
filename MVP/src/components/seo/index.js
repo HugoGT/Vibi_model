@@ -1,2 +1,2 @@
 export * from "./seo";
-export { SEO as default } from "./seo";
+export { Seo as default } from "./seo";
