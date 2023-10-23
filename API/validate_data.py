@@ -11,13 +11,19 @@ current_date = datetime.now().date()
 
 def validate_data(data):
     credit = data.credit
-    home_price = "Sin dato"
+    name = None
+    age = None
+    phone = None
+    email = None
+    dni = None
+    dni_date = None
+    home_price = -1
     currency = "Sin dato"
-    initial_payment = "Sin dato"
+    initial_payment = -1
     situation = "Sin dato"
     department = "Sin dato"
     district = "Sin dato"
-    income = "Sin dato"
+    income = -1
     estimated_purchase = "Sin dato"
     errors = []
 
@@ -57,14 +63,15 @@ def validate_data(data):
     pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
     if not re.match(pattern, data.email):
         errors.append("Error en el email")
-    email = data.email
+    else:
+        email = data.email
 
     pattern = r'^\d{8}$'
     if not re.match(pattern, data.dni):
         errors.append("Error en el DNI")
-    dni = int(data.dni)
+    else:
+        dni = int(data.dni)
 
-    dni_date = "Sin dato"
     try:
         dni_date = datetime.strptime(data.dni_date, '%Y-%m-%d').date()
 
@@ -72,7 +79,6 @@ def validate_data(data):
             raise ValueError
     except ValueError:
         errors.append("Error en la fecha de emisión")
-    dni_date = str(dni_date)
 
     if data.home_price:
         try:
@@ -126,7 +132,7 @@ def validate_data(data):
     if data.credit == "CH":
         e = 0
         for v in variables:
-            if v == None or v == "Sin dato":
+            if v == None or v == "Sin dato" or v == -1:
                 e += 1
         if e == 1:
             errors.append("Falta 1 campo por llenar")
@@ -140,7 +146,7 @@ def validate_data(data):
         "phone": phone,
         "email": email,
         "dni": dni,
-        "dni_date": dni_date,
+        "dni_date": str(dni_date),
         "home_price": home_price,
         "currency": currency,
         "initial_payment": initial_payment,

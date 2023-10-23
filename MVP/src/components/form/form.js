@@ -47,19 +47,19 @@ export function VibiForm() {
 
     body = JSON.stringify(formData);
 
-    console.log(body);
-    // fetch("", {
-    //   body,
-    //   method: "post",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {})
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
+    console.log(body); // Raise
+    fetch("https://house-pricing-vibi.onrender.com/register/", {
+      body,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => console.log(response.message))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (

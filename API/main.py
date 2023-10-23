@@ -25,7 +25,7 @@ app.add_middleware(
 
 
 @app.post("/register/")
-async def predict(data: FormData):
+async def register_user(data: FormData):
     data = validate_data(data)
 
     if data["errors"]:
