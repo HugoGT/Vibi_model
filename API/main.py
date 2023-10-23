@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from data import InputData, FormData
 from validate_data import validate_data
+from postgres import update_DB
 
 
 with open('xgb_model.pkl', 'rb') as file:
@@ -27,7 +28,12 @@ app.add_middleware(
 async def predict(data: FormData):
     data = validate_data(data)
 
-    return data
+    if data["errors"]:
+        return {"errors": data["errors"]}
+
+    response = update_DB(data)
+
+    return {"message": response}
 
 
 @app.post("/predict/")
@@ -40,5 +46,6 @@ async def predict(data: InputData):
         ]])
 
         return {"result": str(result[0])}
+
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

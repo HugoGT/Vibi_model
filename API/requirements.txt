@@ -2,4 +2,6 @@ uvicorn
 fastapi
 pydantic
 phonenumbers
+psycopg2-binary
+# model
 xgboost==2.0.0
