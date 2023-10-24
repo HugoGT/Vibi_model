@@ -20,10 +20,14 @@ export function Success() {
           <p className="text-secondary_vibi my-4 font-medium">
             Estamos atentos para despejar tus dudas
           </p>
-          <button className="flex gap-2 px-6 py-4 items-center mx-auto lg:mx-0 mt-4 lg:mt-0 lg:ml-2 bg-green_wpp rounded text-white text-sm">
+          <a
+            href="https://api.whatsapp.com/send/?phone=%2B51902409387&text=Hola%21%2C+quisiera+m%C3%A1s+informaci%C3%B3n+acerca+de+cr%C3%A9dito+Mivivienda&type=phone_number&app_absent=0#"
+            target="blank_"
+            className="flex gap-2 px-6 py-4 items-center mx-auto lg:mx-0 mt-4 lg:mt-0 lg:ml-2 bg-green_wpp rounded text-white text-sm"
+          >
             <img src="/svg/wpp.svg" alt="wpp logo" />
             Contacta con un asesor
-          </button>
+          </a>
           <a href="../" className="mt-4 text-sm underline hover:text-blue-700">
             Volver a inicio
           </a>

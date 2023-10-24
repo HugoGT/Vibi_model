@@ -50,7 +50,6 @@ export function VibiForm() {
 
     body = JSON.stringify(formData);
 
-    console.log(body);
     fetch("https://house-pricing-vibi.onrender.com/register/", {
       body,
       method: "POST",
