@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { PERU_DEPARTMENTS } from "./departments";
 import { CbSelect } from "./combobox";
+import { Feedback } from "./feedback";
 
 const DEPARTMENTS = Object.keys(PERU_DEPARTMENTS);
 
@@ -10,7 +11,9 @@ export function VibiForm() {
   const [department, setDepartment] = useState(DEPARTMENTS[0]);
   const DISTRICTS = PERU_DEPARTMENTS[department];
   const [district, setDistrict] = useState(DISTRICTS[0]);
-  let body = {};
+  const [message, setMessage] = useState([]);
+  const [feedback, setFeedback] = useState("hidden");
+  let body;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +50,7 @@ export function VibiForm() {
 
     body = JSON.stringify(formData);
 
-    console.log(body); // Raise
+    console.log(body);
     fetch("https://house-pricing-vibi.onrender.com/register/", {
       body,
       method: "POST",
@@ -56,7 +59,14 @@ export function VibiForm() {
       },
     })
       .then((response) => response.json())
-      .then((response) => console.log(response.message))
+      .then((response) => {
+        if (response && response.message === "Registro exitoso") {
+          window.location.href = "../exito";
+        } else {
+          setFeedback("text-red-500");
+          setMessage(response.errors);
+        }
+      })
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -479,7 +489,7 @@ export function VibiForm() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:gap-4 sm:pb-4 sm:flex-row">
+              <div className="flex flex-col sm:gap-4 sm:flex-row">
                 <div className="flex flex-col sm:w-1/2">
                   <label
                     className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
@@ -522,6 +532,8 @@ export function VibiForm() {
             </Tabs.Content>
           </Tabs.Root>
         </div>
+
+        <Feedback active={feedback} message={message} />
 
         <button
           className="inline-block mb-8 px-6 py-3 bg-vibi rounded text-sm text-white sm:mb-12 lg:text-base hover:bg-vibi_hover"
