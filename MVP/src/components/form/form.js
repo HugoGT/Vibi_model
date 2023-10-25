@@ -19,7 +19,9 @@ export function VibiForm() {
     e.preventDefault();
     const formData = {
       credit: selectedTab,
-      full_name: e.target.full_name.value,
+      full_name: e.target.full_name.value
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, ""),
       age: e.target.age.value,
       phone: "+51" + e.target.phone.value,
       email: e.target.email.value,
