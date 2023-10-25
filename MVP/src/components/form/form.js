@@ -478,7 +478,7 @@ export function VibiForm() {
                     className="font-medium mt-4 text-sm sm:text-base sm:pr-4 sm:mt-0"
                     htmlFor="district"
                   >
-                    ¿En qué distrito?:
+                    ¿En qué provincia?:
                   </label>
                   <CbSelect
                     list={DISTRICTS}
